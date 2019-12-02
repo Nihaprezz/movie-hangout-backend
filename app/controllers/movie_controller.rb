@@ -1,7 +1,7 @@
 class MovieController < ApplicationController
     require 'rest-client'
 
-    skip_before_action :authorized, only: [:popular, :movieDetails]
+    skip_before_action :authorized, only: [:popular, :movieDetails, :all]
 
     MOVIE_API_KEY = ENV['movieAPIKey']
 
@@ -19,6 +19,23 @@ class MovieController < ApplicationController
         url = "https://api.themoviedb.org/3/movie/#{movieID}?api_key=e53ae350da5b73066053a3817dc2c94c&language=en-US"
         response = RestClient.get("#{url}")
         render json: response
+    end
+
+    def all
+        movies = Movie.all
+        render json: movies.to_json(serialized_data)
+    end
+
+    private
+    
+    def serialized_data
+        {
+            :include => {
+                :genres => 
+                {:except => [:created_at, :updated_at]}
+            },
+            :except => [:created_at, :updated_at]
+        }
     end
 
 end
