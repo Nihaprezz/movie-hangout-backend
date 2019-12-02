@@ -7,5 +7,8 @@ Rails.application.routes.draw do
       get '/profile', to: 'users#profile'
     end
   end
+
+  get '/popular', to: 'movie#popular'
+  get '/movie/:id', to: 'movie#movieDetails'
 end
 
