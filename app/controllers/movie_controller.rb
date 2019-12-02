@@ -21,6 +21,4 @@ class MovieController < ApplicationController
         render json: response
     end
 
-    
-
 end
