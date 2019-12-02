@@ -10,10 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_02_000510) do
+ActiveRecord::Schema.define(version: 2019_12_02_035058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "genre_joints", force: :cascade do |t|
+    t.integer "movie_id"
+    t.integer "genre_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.integer "genre_API_ID"
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "movies", force: :cascade do |t|
+    t.string "backdrop_path"
+    t.integer "budget"
+    t.integer "genre_joint"
+    t.string "home_path"
+    t.integer "movieAPI_ID"
+    t.integer "Imdb_ID"
+    t.string "original_title"
+    t.string "overview"
+    t.string "poster_path"
+    t.integer "release_date"
+    t.integer "revenue"
+    t.integer "runtime"
+    t.boolean "video"
+    t.float "vote_average"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
