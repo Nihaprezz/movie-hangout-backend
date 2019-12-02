@@ -1,8 +1,11 @@
 class Movie < ApplicationRecord
     has_many :movie_lists
     has_many :users, through: :movie_lists
+
     has_many :genre_joints
     has_many :genres, through: :genre_joints
+
+    has_many :comments
 
 
     require 'rest-client'
