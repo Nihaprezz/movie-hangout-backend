@@ -20,7 +20,10 @@ class Movie < ApplicationRecord
         # parsed["genres"].each do |genre|
         #     Genre.find_or_create_by(genre_API_ID: genre["id"], name: genre["name"])
         # end
-        page = 1
+
+
+        #SEEDING THE MOVIE DATABASE
+        page = 26 #last ran at 26
 
         url = "https://api.themoviedb.org/3/movie/popular?page=#{page}&language=en-US&api_key=#{MOVIE_API_KEY}"
         response = RestClient.get(url)
@@ -31,11 +34,9 @@ class Movie < ApplicationRecord
             
             secondResp = RestClient.get(secondURL)
             secondParsed = JSON.parse(secondResp)
+
+
             
-            #taking care of creating the genres first 
-            secondParsed["genres"].each do | genre |
-                GenreJoint.find_or_create_by(movie_id: movie["id"], genre_id: genre["id"])
-            end
 
             #seeding the movie data
             Movie.find_or_create_by(
@@ -53,8 +54,18 @@ class Movie < ApplicationRecord
                 video: secondParsed["video"],
                 vote_average: secondParsed["vote_average"],
             )
-        end
 
+
+                    #taking care of creating the genres  
+            secondParsed["genres"].each do | genre |
+                gen = Genre.find_by(genre_API_ID: genre["id"])
+                mov = Movie.find_by(movieAPI_ID: movie["id"])
+                GenreJoint.find_or_create_by(
+                    movie_id: mov.id, 
+                    genre_id: gen.id
+                    )
+            end
+        end
 
     end
 end
