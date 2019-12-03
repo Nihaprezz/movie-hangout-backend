@@ -15,8 +15,8 @@ class MovieController < ApplicationController
     end
 
     def movieDetails 
-        #same here, we can change the movie id by passing a param front the front end, like a show page
-        movieID = 466272
+        movie = Movie.all.find(params[:id])
+        movieID = movie.movieAPI_ID
         url = "https://api.themoviedb.org/3/movie/#{movieID}?api_key=e53ae350da5b73066053a3817dc2c94c&language=en-US"
         response = RestClient.get("#{url}")
         render json: response
