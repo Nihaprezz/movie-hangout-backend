@@ -7,7 +7,7 @@ class MovieController < ApplicationController
 
     def popular
         #page variable can probably be changed by a params we can pass in front front end 
-        page = 1
+        page = params["page"]
         url = "https://api.themoviedb.org/3/movie/popular?page=#{page}&language=en-US&api_key=#{MOVIE_API_KEY}"
         response = RestClient.get("#{url}")
         parsedJSON = JSON.parse(response)

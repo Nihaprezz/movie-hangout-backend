@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/popular', to: 'movie#popular'
+  get '/popular/:page', to: 'movie#popular'
   get '/movie/:id', to: 'movie#movieDetails'
   get '/movies', to: 'movie#all'
   get '/top_rated', to: 'movie#topRated' 
