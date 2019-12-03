@@ -18,7 +18,7 @@ class Movie < ApplicationRecord
     # need to create a serialized route for the right info of information.
 
     def self.seed
-        #USED TO SEED THE GENRE DATA INTO THE DB
+        # USED TO SEED THE GENRE DATA INTO THE DB
         # url = "https://api.themoviedb.org/3/genre/movie/list?api_key=#{MOVIE_API_KEY}&language=en-US"
         # response = RestClient.get(url)
         # parsed = JSON.parse(response)
@@ -29,7 +29,7 @@ class Movie < ApplicationRecord
 
 
         #SEEDING THE MOVIE DATABASE
-        # page = 26 #last ran at 26
+        # page = 2 #last ran at 26
 
         # url = "https://api.themoviedb.org/3/movie/popular?page=#{page}&language=en-US&api_key=#{MOVIE_API_KEY}"
         # response = RestClient.get(url)
