@@ -15,8 +15,7 @@ class MovieController < ApplicationController
     end
 
     def movieDetails 
-        movie = Movie.all.find(params[:id])
-        movieID = movie.movieAPI_ID
+        movieID = params[:id] #movie API ID
         url = "https://api.themoviedb.org/3/movie/#{movieID}?api_key=e53ae350da5b73066053a3817dc2c94c&language=en-US"
         response = RestClient.get("#{url}")
         render json: response
