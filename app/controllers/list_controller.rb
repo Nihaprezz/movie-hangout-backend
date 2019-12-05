@@ -2,7 +2,6 @@ class ListController < ApplicationController
     before_action :authorized, only: [:create]
 
     def create
-    
         id = 0 
         params[:movie][:movieAPI_ID] ? id = params[:movie][:movieAPI_ID] : id = params[:movie][:id]
         user = User.find_by(username: params[:user][:username])
