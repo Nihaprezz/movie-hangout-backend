@@ -14,6 +14,15 @@
   get '/top_rated', to: 'movie#topRated' 
   get '/upcoming', to: 'movie#upcoming'
   get '/now_playing', to: 'movie#nowPlaying'
+
+
+
+
+
+
+
+
+  post '/movielists', to: 'list#create'
 end
 
 
