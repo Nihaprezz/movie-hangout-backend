@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   get '/top_rated', to: 'movie#topRated' 
   get '/upcoming', to: 'movie#upcoming'
   get '/now_playing', to: 'movie#nowPlaying'
+
+  get '/comments', to: 'comment#index'
+  post '/comments', to: 'comment#create'
+  delete '/comments/:id', to: 'comment#destroy'
 end
 
 
