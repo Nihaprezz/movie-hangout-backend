@@ -6,7 +6,7 @@ class Movie < ApplicationRecord
     has_many :genres, through: :genre_joints
 
     has_many :comments
-
+ 
 
     require 'rest-client'
     MOVIE_API_KEY = ENV['movieAPIKey']

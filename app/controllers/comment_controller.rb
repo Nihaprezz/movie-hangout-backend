@@ -1,5 +1,5 @@
 class CommentController < ApplicationController
-  before_action :authorized, only: [:create, :show, :destroy]
+  before_action :authorized, only: [:create, :destroy]
 
   def index
     comments = Comment.all
@@ -53,12 +53,6 @@ class CommentController < ApplicationController
 
   end
 
-  def show
-    userId = params[:id]
-    myComments = Comment.all.where(user_id: userId)
-    render json: myComments
-  end
-
   def movie
     movieApiID = params[:movieApiID]
     movie = Movie.all.find_by(movieAPI_ID: movieApiID)
@@ -67,7 +61,7 @@ class CommentController < ApplicationController
 
   def destroy
     commentId = params[:id]
-    comment = Comment.find(commentId).destroy
+    comment = Comment.destroy(commentId)
     render json: comment
   end
 
