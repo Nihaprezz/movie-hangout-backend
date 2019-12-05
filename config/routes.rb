@@ -16,6 +16,8 @@
   get '/now_playing', to: 'movie#nowPlaying'
 
   get '/comments', to: 'comment#index'
+  get '/comments/:id', to: 'comment#show'
+  get '/comments/movie/:movieApiID', to: 'comment#movie'
   post '/comments', to: 'comment#create'
   delete '/comments/:id', to: 'comment#destroy'
 end
