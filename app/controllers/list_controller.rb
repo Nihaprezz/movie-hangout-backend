@@ -1,5 +1,5 @@
 class ListController < ApplicationController
-    before_action :authorized, only: [:create]
+    before_action :authorized, only: [:create, :all]
 
     def create
         id = 0 
@@ -10,7 +10,7 @@ class ListController < ApplicationController
             movieID = Movie.where(movieAPI_ID: id)[0].id
           
             if user.movie_lists.where(movie_id: movieID).length > 0 then 
-                render json: {error: 'Already added to your list!'}
+                render json: {message: 'Already added to your list!'}
             else
                 justAdded = MovieList.create(user_id: user.id, movie_id: movieID)
                 render json: justAdded.movie
@@ -35,6 +35,12 @@ class ListController < ApplicationController
             render json: justAdded.movie  
         end
         
+    end
+
+    def all
+        userID = request.headers["User"]
+        foundUser = User.find(userID)
+        render json: foundUser.movie_lists
     end
 
 end

@@ -21,7 +21,7 @@
 
 
 
-
+  get '/movielists', to: 'list#all'
   post '/movielists', to: 'list#create'
   get '/comments', to: 'comment#index'
   get '/comments/movie/:movieApiID', to: 'comment#movie'
