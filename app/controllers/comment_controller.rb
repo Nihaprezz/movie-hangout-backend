@@ -12,18 +12,20 @@ class CommentController < ApplicationController
 
     if movie["movieAPI_ID"]
       comment = Comment.create({
-        user_id: current_user.id,
-        movie_id: movie["id"],
-        content: content
+      user_id: current_user.id,
+      movie_id: movie["id"],
+      content: content,
+      movie_title: movie["original_title"]
       })
       render json: comment 
     else
       movie = Movie.find_by(movieAPI_ID: movie["id"])
       if movie
         comment = Comment.create({
-        user_id: current_user.id,
-        movie_id: movie.id,
-        content: content
+          user_id: current_user.id,
+          movie_id: movie["id"],
+          content: content,
+          movie_title: movie["original_title"]
         })
         render json: comment 
       else
@@ -44,8 +46,9 @@ class CommentController < ApplicationController
         )
         comment = Comment.create({
           user_id: current_user.id,
-          movie_id: movieCreated.id,
-          content: content
+          movie_id: movie["id"],
+          content: content,
+          movie_title: movie["original_title"]
         })
         render json: comment
       end
