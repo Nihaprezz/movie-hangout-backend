@@ -40,7 +40,8 @@ class ListController < ApplicationController
     def all
         userID = request.headers["User"]
         foundUser = User.find(userID)
-        render json: foundUser.movie_lists
+        myMovies = foundUser.movies
+        render json: myMovies
     end
 
 end
