@@ -29,7 +29,7 @@ class Movie < ApplicationRecord
 
 
         # SEEDING THE MOVIE DATABASE
-        page = 4 #last ran at 26
+        page = 12 #last ran at 26
 
         url = "https://api.themoviedb.org/3/movie/popular?page=#{page}&language=en-US&api_key=#{MOVIE_API_KEY}"
         response = RestClient.get(url)
@@ -41,8 +41,6 @@ class Movie < ApplicationRecord
             secondResp = RestClient.get(secondURL)
             secondParsed = JSON.parse(secondResp)
             Movie.findOrCreateMovie(secondParsed, movie)
-
-            
         end
     end
 
